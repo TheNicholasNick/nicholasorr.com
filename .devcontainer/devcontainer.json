@@ -1,0 +1,39 @@
+{
+  "name": "nicholasorr.com",
+  "image": "local-devcontainer:nodejs-typescript",
+  "portsAttributes": {
+    "4321": {
+      "label": "Astro App",
+      "onAutoForward": "openPreview"
+    }
+  },
+  "forwardPorts": [4321],
+  //  "postCreateCommand": "pnpm install",
+  //  "waitFor": "postCreateCommand",
+  //  "postAttachCommand": {
+  //    "Server": "pnpm dev --host"
+  //  },
+  "customizations": {
+    "vscode": {
+      "extensions": [
+        "astro-build.astro-vscode",
+        "dbaeumer.vscode-eslint",
+        "esbenp.prettier-vscode",
+        "mhutchie.git-graph"
+        // Add more extensions here
+      ],
+      "settings": {
+        "terminal.integrated.defaultProfile.linux": "zsh",
+        "editor.formatOnSave": true,
+        "editor.defaultFormatter": "esbenp.prettier-vscode"
+        // You can add or override settings here
+      }
+    }
+  },
+  "mounts": [
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.vscode/devcontainer.json,target=/home/node/.vscode-remote/data/Machine/settings.json,type=bind,consistency=cached",
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/.config/Cursor,target=/home/node/.config/Cursor,type=bind",
+    "source=${localEnv:HOME}${localEnv:USERPROFILE}/Library/Application Support/Cursor,target=/home/node/.config/Cursor,type=bind"
+  ],
+  "remoteUser": "node"
+}
